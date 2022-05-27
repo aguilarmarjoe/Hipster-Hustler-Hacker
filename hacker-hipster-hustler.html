@@ -1,0 +1,111 @@
+<!doctype html>
+<title>Hipster, Hacker or Hustler</title>
+<link rel="stylesheet" href="/css/profile8.css">
+<style>
+  label:hover{
+    color:#66ccff;
+  }
+</style>
+
+<h1>Hipster, Hacker or Hustler</h1>
+According to <a href="http://www.forbes.com/sites/andyellwood/2012/08/22/the-dream-team-hipster-hacker-and-hustler/" target="_blank">this article</a>, every business team needs 3 types of people to be successful: a Hipster, a Hacker, and a Hustler.
+<p>
+The Hipster is the one who makes the product cool and fashionable.
+<br>
+The Hacker is the one who knows how to actually build the product.
+<br>
+The Hustler is the one who finds a way to sell the product to the world.
+<p>
+Answer each of the questions below to find out which type of person you are.
+
+<h3>Question 1</h3>
+<p>What color is your text editor?<br>
+<select id="colorSelect">
+  <option value="hacker">Black</option>
+  <option value="hustler">White</option>
+  <option value="hipster">Something else</option>
+</select>
+
+<h3>Question 2</h3>
+<p>Which do you want most?<br>
+<label><input type="radio" name="device" id="samsungRadio">Samsung Galaxy Note 10.1</label><br>
+<label><input type="radio" name="device" id="macbookRadio">MacBook Air</label><br>
+<label><input type="radio" name="device" id="alienwareRadio">Alienware 18</label>
+
+<h3>Question 3</h3>
+<p>What do you get for a quick snack?<br>
+<label><input type="radio" name="food" id="fruitRadio">Some fruit or a salad</label><br>
+<label><input type="radio" name="food" id="chocolateRadio">Chocolate and Coke</label><br>
+<label><input type="radio" name="food" id="nothingRadio">Nothing... You'll eat later</label>
+
+<h3>Question 4</h3>
+<p>How many hours a week do you spend playing video games?<br>
+<input type="number" id="gamingNumber" min="0" max="168" step="0.5" value="0">
+
+<h3>Question 5</h3>
+<p>What do you prefer to wear to work?<br>
+<select id="clothesSelect">
+  <option value="hacker">What you slept in</option>
+  <option value="hipster">Skinny jeans and a t-shirt</option>
+  <option value="hustler">Shirt and tie</option>
+</select>
+
+<h3>Question 6</h3>
+<p>Which is your ideal Friday night activity?<br>
+<label><input type="radio" name="night" id="gamingRadio">Gaming and movies</label><br>
+<label><input type="radio" name="night" id="concertRadio">Go to a concert or exhibit</label><br>
+<label><input type="radio" name="night" id="partyRadio">Networking at startup meetups</label>
+
+<p><button id="calculateButton">What am I?</button>
+
+<script>
+  function calculatePersonality(){
+    var hipster = 0;
+    var hacker = 0;
+    var hustler = 0;
+    
+    if(colorSelect.value == 'hacker') hacker++;
+    if(colorSelect.value == 'hustler') hustler++;
+    if(colorSelect.value == 'hipster') hipster++;
+    
+     if(samsungRadio.checked) hustler++;
+     if(macbookRadio.checked) hipster++;
+     if(alienwareRadio.checked) hacker++;
+     
+     if(nothingRadio.checked) hustler++;
+     if(fruitRadio.checked) hipster++;
+     if(chocolateRadio.checked) hacker++;
+     
+     if(gamingNumber.value > 4) {
+       hacker++;
+     }else if(gamingNumber.value  > 2){
+       hipster++;
+     }else{
+       hustler++;
+     }
+     
+     if(clothesSelect.value == 'hacker') hacker++;
+     if(clothesSelect.value == 'hipster') hipster++;
+     if(clothesSelect.value == 'hustler') hustler++;
+    
+     if(gamingRadio.checked)hacker++;
+     if(concertRadio.checked)hipster++;
+     if(partyRadio.checked) hustler++;
+      
+    var personalityType = 'Hipster';
+    var highestScore = hipster;
+    
+    if(highestScore < hacker ){
+      personalityType = 'Hacker';
+      highestScore = hacker;
+    }
+    
+    if(highestScore < hustler ){
+      personalityType = 'Hustler';
+    }
+    
+    alert('You are a ' + personalityType);
+  }
+  
+  calculateButton.onclick = calculatePersonality;
+</script>
